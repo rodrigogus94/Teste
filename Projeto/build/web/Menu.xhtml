@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <h:head>
+
+        <style>
+            #form_menu{color: black !important;}
+            #form_menu a:hover{color: black;}
+        </style>
+
+
+    </h:head>
+
+    <h:body>
+        <h:form id="form_menu">
+<!--            <c:if test="#{empty ControladorFuncio.login}">
+                <script type="text/javascript">
+                    location.href = "logar.xhtml";
+                </script>
+            </c:if>-->
+            <p:panel style="width: 99%; background: green">
+                <f:facet name="header">
+                    <p:graphicImage url="img/IFPE.jpg"/>
+                </f:facet>
+
+            </p:panel>
+            <p:menubar style="color: black">
+
+                <p:menuitem value="Home" outcome="index"  icon="ui-icon-home"/>
+
+                <p:submenu label="Estudante" icon="ui-icon-person">
+                    <p:menuitem value="Cadastrar" outcome="CadastraAluno" icon="ui-icon-person"/>
+                    <p:menuitem outcome="ApresentaAlunos" value="Lista " icon="ui-icon-document" />
+
+                </p:submenu>
+
+                
+
+                <p:submenu label="Disciplinas" style="color: black" icon="ui-icon-person">
+                    <p:menuitem outcome="CadastraDisciplina" value="Cadastrar Disciplina" icon="ui-icon-document"/>
+                    <p:menuitem outcome="ApresentaDisciplinas" value="Ver Todas" icon="ui-icon-document"/>
+                </p:submenu>
+
+                <p:submenu label="Atividades" style="color: black" icon="ui-icon-person">
+                    <p:menuitem value="Cadastrar" outcome="CadastraAtividade" icon="ui-icon-person"/>
+                    <p:menuitem outcome="ApresentaAtividades" value="Ver Todas"  icon="ui-icon-document"/>
+                </p:submenu>
+
+                <f:facet name="options">
+                    <strong>Bem Vindo #{ControladorFuncio.login.nome}</strong> <p:spacer width="20" />
+
+                    <p:menuButton value="Minha Conta">
+
+                        <p:menuitem value="Cadastrar" outcome="CadastraFuncionario" icon="ui-icon-person"/>
+                        <p:menuitem outcome="ApresentaFuncionarios" value="Lista de Funcionários"  icon="ui-icon-document"/>
+                        <p:menuitem value="Sair" action="#{ControladorFuncio.logoff()}" icon="ui-icon-power" style="color: black" />
+                        
+                            
+                      
+
+                    </p:menuButton>
+                    
+                 
+
+
+                </f:facet>
+            </p:menubar>
+
+            <!--Mostra uma img carrengando-->
+            <p:ajaxStatus onstart="LoadingDial.show()" onsuccess="LoadingDial.hide()"/> 
+            <p:dialog widgetVar="LoadingDial" modal="true" visible="false" resizable="false" closable="false">
+                <f:facet name="header">
+                    processando <p:graphicImage value="img/loadingBarra.gif"/>
+                </f:facet>
+
+            </p:dialog>
+            
+        </h:form>
+
+
+    </h:body>
+
+
+</html>
+

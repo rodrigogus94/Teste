@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+     
+    </h:head>
+    <h:body>
+        <h:form>
+            <c:if test="#{!empty ControladorFuncio.login}">
+                <script type="text/javascript">
+                    location.href = "index.xhtml";
+                </script>
+            </c:if>
+            <p:growl autoUpdate="true"/>
+            <p:dialog closable="false" modal="true" visible="true" resizable="false" header="Painel Administrativo">
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="SIAPE" />
+                    <p:inputMask id="siape" value="#{Fun.siape}" required="true" mask="9999999" requiredMessage="O Campo SIAPE é Obrigatório" />
+                    
+                    <h:outputLabel  value="Senha:" />
+                    <p:password id="senha" value="#{Fun.senha}" required="true" requiredMessage="Digite a Senha" />
+                    
+                    
+                </h:panelGrid>
+                
+                <div style="text-align: right; margin-top: 30px;">
+                    <p:commandButton id="botaoLogar" value="Logar" action="#{ControladorFuncio.validarLogin(Fun)}" icon="ui-icon-check"/>
+                    <h:message showDetail="true" for="user"/>
+                    <h:message showDetail="true" for="senha"/>
+                </div>
+            </p:dialog>
+            
+            <p:ajaxStatus onstart="LoadingDial.show()" onsuccess="LoadingDial.hide()"/> 
+            <p:dialog widgetVar="LoadingDial" modal="true" visible="false" resizable="false" closable="false">
+                <f:facet name="header">
+                    processando <p:graphicImage value="img/loadingBarra.gif"/>
+                </f:facet>
+            </p:dialog>
+                
+        </h:form>
+    </h:body>
+</html>
+
